@@ -56,4 +56,19 @@ const getPost = async (req,res) => {
     }
 }
 
-module.exports = {createPost,updatePost,getPost};
+const deletePost = async (req,res) =>{
+    postSchema.remove({_id:req.params.id})
+    .then(result =>{
+        res.json({
+            message:'message delete',
+            result:result
+        })
+    })
+    .catch(err =>{
+        res.json({
+            error:err
+        })
+    })
+}
+
+module.exports = {createPost,updatePost,getPost,deletePost};
